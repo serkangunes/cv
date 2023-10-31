@@ -1,0 +1,19 @@
+---
+import Language from './Language.astro';
+
+type Props = {
+  languages: {
+    name: string;
+    level: string;
+  }[];
+};
+
+const { languages } = Astro.props;
+---
+
+<h2>Languages</h2>
+
+<table>
+  <thead> <tr> <th>Language</th><th>Level</th></tr></thead>
+  <tbody>{languages.map((language) => <Language {...language} />)}</tbody>
+</table>

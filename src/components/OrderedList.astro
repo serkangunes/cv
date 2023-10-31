@@ -1,0 +1,22 @@
+---
+type Props = {
+  listTitle: string;
+  list: { title: string; description: string }[];
+};
+
+const { list, listTitle } = Astro.props;
+---
+
+{list && list.length > 0 && <h4>{listTitle}</h4>}
+{
+  list && list.length > 0 && (
+    <ol>
+      {list.map((item) => (
+        <li>
+          <span style="text-decoration: underline;">{item.title}: </span>
+          {item.description}
+        </li>
+      ))}
+    </ol>
+  )
+}

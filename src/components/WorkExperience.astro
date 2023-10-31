@@ -1,0 +1,24 @@
+---
+import Experience from './Experience.astro';
+
+type Props = {
+  positions: Array<{
+    companyName: string;
+    companyUrl: string;
+    positionTitle: string;
+    startDate: string;
+    endDate: string;
+    description: {
+      paragraphs: string[];
+      projects: { title: string; description: string }[];
+      skills: { title: string; description: string }[];
+    };
+  }>;
+};
+
+const { positions } = Astro.props;
+---
+
+<h2>WORK EXPERIENCE</h2>
+
+{positions.map((position) => <Experience {...position} />)}

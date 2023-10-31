@@ -1,6 +1,8 @@
 ---
 import '@fontsource/poppins';
 import Download from '../components/Download.astro';
+import Educations from '../components/Educations.astro';
+import WorkExperience from '../components/WorkExperience.astro';
 import '../styles.css';
 
 type Props = {
@@ -9,10 +11,40 @@ type Props = {
     pdfLink?: string;
     noIndex?: boolean;
     description?: string;
+    positions: Array<{
+      companyName: string;
+      companyUrl: string;
+      positionTitle: string;
+      startDate: string;
+      endDate: string;
+      description: {
+        paragraphs: string[];
+        projects: { title: string; description: string }[];
+        skills: { title: string; description: string }[];
+      };
+    }>;
+    educations: {
+      name: string;
+      title: string;
+      startDate: string;
+      endDate: string;
+    }[];
+    languages: {
+      name: string;
+      level: string;
+    }[];
   };
 };
 
-const { title, pdfLink, noIndex, description } = Astro.props.frontmatter;
+const {
+  title,
+  pdfLink,
+  noIndex,
+  description,
+  positions,
+  educations,
+  languages,
+} = Astro.props.frontmatter;
 
 const initials = title
   .split(' ')
@@ -20,7 +52,7 @@ const initials = title
   .slice(0, 2);
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -31,11 +63,11 @@ const initials = title
     {noIndex && <meta name="robots" content="noindex" />}
     <title>{title}</title>
   </head>
-  <body class="my-0 bg-indigo-50 dark:bg-slate-900 sm:my-14">
+  <body class="my-0 bg-indigo-50 dark:bg-slate-900">
     <div class="container mx-auto flex justify-center">
       <article class="minimalist relative">
         <div
-          class="absolute top-4 rounded-sm bg-indigo-400 px-4 py-1 sm:top-12 sm:left-8"
+          class="absolute top-4 rounded-sm bg-indigo-400 px-4 py-1 sm:top-2 sm:left-8"
         >
           <div
             class="flex h-fit select-none flex-col items-center text-sm font-bold"
@@ -52,6 +84,8 @@ const initials = title
           )
         }
         <slot />
+        <WorkExperience positions={positions} />
+        <Educations educations={educations} />
       </article>
     </div>
     <style></style>

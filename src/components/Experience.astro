@@ -1,0 +1,42 @@
+---
+import OrderedList from './OrderedList.astro';
+import UnorderedList from './UnorderedList.astro';
+
+type Props = {
+  companyName: string;
+  companyUrl: string;
+  positionTitle: string;
+  startDate: string;
+  endDate: string;
+  description: {
+    paragraphs: string[];
+    projects: { title: string; description: string }[];
+    skills: { title: string; description: string }[];
+  };
+  pageBreak?: boolean;
+};
+
+const {
+  companyName,
+  companyUrl,
+  positionTitle,
+  startDate,
+  endDate,
+  description,
+  pageBreak,
+} = Astro.props;
+---
+
+<h4 style={pageBreak ? 'page-break-before: always;' : ''}>
+  {positionTitle} : <a href={companyUrl}>{companyName}</a> | {startDate} - {
+    endDate
+  }
+</h4>
+<h4></h4>
+
+<div>
+  {description.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+
+  <OrderedList list={description.projects} listTitle="Projects:" />
+  <UnorderedList list={description.skills} listTitle="Technologies:" />
+</div>

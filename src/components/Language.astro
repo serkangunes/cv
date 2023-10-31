@@ -1,0 +1,13 @@
+---
+type Props = {
+  name: string;
+  level: string;
+};
+
+const { name, level } = Astro.props;
+---
+
+<tr>
+  <td>{name}</td>
+  <td>{level}</td>
+</tr>
