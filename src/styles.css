@@ -8,16 +8,154 @@ body {
 
 article.minimalist {
   @apply prose prose-slate m-0
-    text-xs/snug max-w-fit bg-white px-6 py-8 pt-20 prose-h1:text-xl/snug prose-h1:uppercase prose-h2:mb-1 prose-h2:mt-6 prose-h2:text-xs/snug prose-h2:uppercase
-    prose-h2:text-slate-500 prose-h3:mb-3
-    prose-h3:mt-8 prose-h3:text-xl/snug prose-h3:uppercase prose-h4:mb-3 prose-h4:mt-4 
+    text-xs/snug max-w-fit bg-white px-6 py-8 pt-20 prose-h1:text-xl/snug prose-h1:uppercase prose-h2:mb-1 prose-h2:mt-6 prose-h2:text-sm/snug prose-h2:uppercase
+    prose-h2:text-sky-500 prose-h3:mb-3
+    prose-h3:mt-2 prose-h3:text-sm/snug prose-h3:uppercase prose-h4:mb-2 prose-h4:mt-2
     prose-p:leading-snug prose-a:font-bold prose-a:no-underline prose-a:transition-colors hover:prose-a:text-slate-400 
     prose-li:text-xs/snug prose-table:mt-4 prose-thead:border-0 prose-th:p-0
     prose-th:font-medium prose-td:p-0 prose-td:text-slate-500
-    prose-h4:text-xs/snug prose-h4:text-slate-600 prose-p:my-2 prose-p:text-xs/snug
+    prose-h4:text-xs/snug prose-h4:text-sky-700 prose-p:my-2 prose-p:text-xs/snug
     dark:bg-slate-800
     dark:prose-invert
     prose-h4:dark:text-slate-400  
     sm:pl-20 sm:py-2
     sm:shadow-md lg:max-w-4xl;
+}
+
+section.profile {
+  @apply text-slate-600;
+  font-size: 13px;
+  box-sizing: border-box;
+  position: relative;
+  overflow-wrap: break-word;
+  margin: 0px;
+}
+
+section.profile a {
+  @apply text-slate-600;
+}
+
+article.vcard {
+  font-size: 13px;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+  display: flex;
+  padding-bottom: 10px;
+  text-align: left;
+  flex-wrap: nowrap;
+}
+
+div.user-thumb {
+  font-size: 13px;
+  overflow-wrap: break-word;
+  text-align: left;
+  box-sizing: border-box;
+  height: 125px;
+  width: 125px;
+  border-radius: 50%;
+  border: 1px solid rgb(0, 0, 0);
+  margin: 0px 25px 0px 0px;
+}
+
+div.css-crop {
+  font-size: 13px;
+  overflow-wrap: break-word;
+  text-align: left;
+  box-sizing: border-box;
+  background-image: url('public/ProfilePicture.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  position: relative;
+  width: 100%;
+  border-radius: 50%;
+  margin: 0px;
+}
+
+div.overlay {
+  font-size: 13px;
+  overflow-wrap: break-word;
+  text-align: left;
+  box-sizing: border-box;
+  display: none;
+}
+
+div.user-details {
+  font-size: 13px;
+  overflow-wrap: break-word;
+  text-align: left;
+  box-sizing: border-box;
+  flex: 1 1 auto;
+  width: auto;
+}
+
+div.user-title {
+  font-size: 13px;
+  overflow-wrap: break-word;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+h1.full-name {
+  color: rgb(51, 51, 51);
+  font-size: 350%;
+  letter-spacing: -0.5px;
+  line-height: 100%;
+  margin: 0px 0px 10px;
+  font-weight: bold;
+}
+
+h2.title {
+  overflow-wrap: break-word;
+  text-align: left;
+  box-sizing: border-box;
+  font-size: 130%;
+  margin: 0px 0px 0.5em;
+  font-weight: normal;
+}
+
+ul.user-contact {
+  font-size: 13px;
+  overflow-wrap: break-word;
+  text-align: left;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: -6px;
+  display: flex;
+}
+
+ul.user-websites {
+  font-size: 13px;
+  overflow-wrap: break-word;
+  text-align: left;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-left: -6px;
+  display: flex;
+}
+
+.icon {
+  color: rgb(204, 204, 204);
+  /* font-size: 16px; */
+}
+
+li .text {
+  padding-left: 5px;
+}
+
+li.locality::after {
+  content: '|';
+  color: rgb(204, 204, 204);
+  margin: 0px 0.5em;
+}
+
+li.linkedin::after {
+  content: '|';
+  color: rgb(204, 204, 204);
+  margin: 0px 0.5em;
 }

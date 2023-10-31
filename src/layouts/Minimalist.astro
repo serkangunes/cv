@@ -1,6 +1,5 @@
 ---
 import '@fontsource/poppins';
-import Download from '../components/Download.astro';
 import Educations from '../components/Educations.astro';
 import WorkExperience from '../components/WorkExperience.astro';
 import '../styles.css';
@@ -62,27 +61,68 @@ const initials = title
     <meta name="description" content={description || title} />
     {noIndex && <meta name="robots" content="noindex" />}
     <title>{title}</title>
+    <script
+      src="https://kit.fontawesome.com/ac941d3580.js"
+      crossorigin="anonymous"></script>
   </head>
   <body class="my-0 bg-indigo-50 dark:bg-slate-900">
     <div class="container mx-auto flex justify-center">
       <article class="minimalist relative">
-        <div
-          class="absolute top-4 rounded-sm bg-indigo-400 px-4 py-1 sm:top-2 sm:left-8"
-        >
-          <div
-            class="flex h-fit select-none flex-col items-center text-sm font-bold"
-          >
-            <span>{initials[0]}</span>
-            <span>{initials[1]}</span>
-          </div>
-        </div>
-        {
-          pdfLink && (
-            <div class="not-prose absolute right-4 top-4">
-              <Download href={pdfLink} />
+        <section class="profile">
+          <article class="vcard">
+            <div class="user-thumb">
+              <div class="css-crop" role="figure"></div>
+              <div class="overlay"></div>
             </div>
-          )
-        }
+            <div class="user-details">
+              <div class="user-title">
+                <h1 class="full-name" data-bind="full_name">
+                  <span>
+                    <span>Serkan Gunes</span>
+                  </span>
+                </h1><h2 class="title text-sky-500" data-bind="headline">
+                  <span>
+                    <span> Technology leader, Software architect</span>
+                  </span>
+                </h2>
+              </div>
+              <ul class="user-contact">
+                <li class="locality" data-bind="location">
+                  <i class="fa-solid fa-location-dot icon"></i>
+                  <span class="text">Milton Keynes, England, UK</span>
+                </li>
+                <li class="email" data-bind="email">
+                  <i class="fa-regular fa-envelope icon"></i>
+                  <a href="mailto:gunesserkan@gmail.com" class="text">
+                    gunesserkan@gmail.com
+                  </a>
+                </li>
+              </ul>
+              <ul class="user-websites" data-bind="websites">
+                <li class="website linkedin">
+                  <i class="fa-brands fa-linkedin-in icon"></i>
+                  <a
+                    class="text"
+                    href="https://linkedin.com/in/serkangunes"
+                    rel="noreferrer nofollow"
+                    target="_blank"
+                    >linkedin.com/in/serkangunes
+                  </a>
+                </li>
+                <li class="sc-g6thkz-4 jGelDG website globe">
+                  <i class="fa-solid fa-globe icon"></i>
+                  <a
+                    class="text"
+                    href="https://www.techdesigner.co.uk/"
+                    rel="noreferrer nofollow"
+                    target="_blank"
+                    >techdesigner.co.uk
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </article>
+        </section>
         <slot />
         <WorkExperience positions={positions} />
         <Educations educations={educations} />

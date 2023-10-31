@@ -96,12 +96,6 @@ languages:
   - name: Spanish
     level: Limited working proficiency
 ---
-# Serkan Gunes
-
-## Technology leader, Software architect
-
-Milton Keynes, UK | [gunesserkan@gmail.com](mailto:gunesserkan@gmail.com) | [linkedin.com/in/serkangunes](https://linkedin.com/in/serkangunes)
-
 I am a highly skilled software engineer and technology leader with over 20 years of industry experience, specialising in developing and implementing evolutionary architectures with a keen focus on the build-and-run model.
 
 Throughout my career, I have developed a versatile and broad skill set that encompasses frontend solutions, backend technologies and cloud-based systems. My track record demonstrates a comprehensive approach to project development, from the inception of system design to the final stage of production deployment, with a strong emphasis on the 'infrastructure as code' approach.

@@ -27,12 +27,11 @@ const {
 } = Astro.props;
 ---
 
-<h4 style={pageBreak ? 'page-break-before: always;' : ''}>
+<h3 style={pageBreak ? 'page-break-before: always;' : ''}>
   {positionTitle} : <a href={companyUrl}>{companyName}</a> | {startDate} - {
     endDate
   }
-</h4>
-<h4></h4>
+</h3>
 
 <div>
   {description.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
