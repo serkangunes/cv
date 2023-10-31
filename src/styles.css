@@ -35,6 +35,12 @@ section.profile a {
   @apply text-slate-600;
 }
 
+section.profile li {
+  padding-top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 article.vcard {
   font-size: 13px;
   overflow-wrap: break-word;
@@ -82,7 +88,7 @@ div.overlay {
 }
 
 div.user-details {
-  font-size: 13px;
+  font-size: 10px;
   overflow-wrap: break-word;
   text-align: left;
   box-sizing: border-box;
@@ -91,7 +97,7 @@ div.user-details {
 }
 
 div.user-title {
-  font-size: 13px;
+  font-size: 10px;
   overflow-wrap: break-word;
   text-align: left;
   box-sizing: border-box;
@@ -102,7 +108,7 @@ h1.full-name {
   font-size: 350%;
   letter-spacing: -0.5px;
   line-height: 100%;
-  margin: 0px 0px 10px;
+  margin: 10px 0px 10px;
   font-weight: bold;
 }
 
@@ -111,12 +117,12 @@ h2.title {
   text-align: left;
   box-sizing: border-box;
   font-size: 130%;
-  margin: 0px 0px 0.5em;
+  margin: 0px 0px 10px;
   font-weight: normal;
 }
 
 ul.user-contact {
-  font-size: 13px;
+  font-size: 10px;
   overflow-wrap: break-word;
   text-align: left;
   box-sizing: border-box;
@@ -128,7 +134,7 @@ ul.user-contact {
 }
 
 ul.user-websites {
-  font-size: 13px;
+  font-size: 10px;
   overflow-wrap: break-word;
   text-align: left;
   box-sizing: border-box;
@@ -146,6 +152,7 @@ ul.user-websites {
 
 li .text {
   padding-left: 5px;
+  font-size: 10px;
 }
 
 li.locality::after {
