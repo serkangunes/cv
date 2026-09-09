@@ -7,7 +7,7 @@ type Props = {
 const { name, level } = Astro.props;
 ---
 
-<tr>
-  <td>{name}</td>
-  <td>{level}</td>
-</tr>
+<li class="language-item">
+  <span>{name}</span>
+  <span class="detail-meta">{level}</span>
+</li>

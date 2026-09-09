@@ -1,7 +1,4 @@
 ---
-import OrderedList from './OrderedList.astro';
-import UnorderedList from './UnorderedList.astro';
-
 type Props = {
   companyName: string;
   companyUrl: string;
@@ -9,11 +6,10 @@ type Props = {
   startDate: string;
   endDate: string;
   description: {
-    paragraphs: string[];
-    projects: { title: string; description: string }[];
-    skills: { title: string; description: string }[];
+    summary: string;
+    highlights: string[];
+    skills: string[];
   };
-  pageBreak?: boolean;
 };
 
 const {
@@ -23,19 +19,34 @@ const {
   startDate,
   endDate,
   description,
-  pageBreak,
 } = Astro.props;
 ---
 
-<h3 style={pageBreak ? 'page-break-before: always;' : ''}>
-  {positionTitle} : <a href={companyUrl}>{companyName}</a> | {startDate} - {
-    endDate
-  }
-</h3>
+<article class="experience-entry">
+  <div class="experience-meta">
+    <p class="experience-dates">{startDate} - {endDate}</p>
+  </div>
 
-<div>
-  {description.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+  <div class="experience-content">
+    <h3>{positionTitle}</h3>
+    <p class="experience-company-link">
+      <a href={companyUrl} target="_blank" rel="noreferrer">{companyName}</a>
+    </p>
+    <p class="experience-summary">{description.summary}</p>
 
-  <OrderedList list={description.projects} listTitle="Projects:" />
-  <UnorderedList list={description.skills} listTitle="Technologies:" />
-</div>
+    {description.highlights.length > 0 && (
+      <ul class="experience-highlights">
+        {description.highlights.map((highlight) => <li>{highlight}</li>)}
+      </ul>
+    )}
+
+    {description.skills.length > 0 && (
+      <div class="experience-skills">
+        <span class="skills-label">Tools</span>
+        <ul class="skill-list skill-list-compact">
+          {description.skills.map((skill) => <li>{skill}</li>)}
+        </ul>
+      </div>
+    )}
+  </div>
+</article>

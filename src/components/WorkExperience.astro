@@ -9,9 +9,9 @@ type Props = {
     startDate: string;
     endDate: string;
     description: {
-      paragraphs: string[];
-      projects: { title: string; description: string }[];
-      skills: { title: string; description: string }[];
+      summary: string;
+      highlights: string[];
+      skills: string[];
     };
   }>;
 };
@@ -19,6 +19,13 @@ type Props = {
 const { positions } = Astro.props;
 ---
 
-<h2>WORK EXPERIENCE</h2>
+<section class="section experience-section" aria-labelledby="experience-heading">
+  <div class="section-heading">
+    <h2 id="experience-heading">Experience</h2>
+    <span class="section-rule" aria-hidden="true"></span>
+  </div>
 
-{positions.map((position) => <Experience {...position} />)}
+  <div class="experience-list">
+    {positions.map((position) => <Experience {...position} />)}
+  </div>
+</section>

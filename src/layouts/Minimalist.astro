@@ -1,8 +1,24 @@
 ---
-import '@fontsource/poppins';
+import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/500.css';
+import '@fontsource/poppins/600.css';
+import '@fontsource/poppins/700.css';
 import Educations from '../components/Educations.astro';
 import WorkExperience from '../components/WorkExperience.astro';
 import '../styles.css';
+
+type Experience = {
+  companyName: string;
+  companyUrl: string;
+  positionTitle: string;
+  startDate: string;
+  endDate: string;
+  description: {
+    summary: string;
+    highlights: string[];
+    skills: string[];
+  };
+};
 
 type Props = {
   frontmatter: {
@@ -10,18 +26,14 @@ type Props = {
     pdfLink?: string;
     noIndex?: boolean;
     description?: string;
-    positions: Array<{
-      companyName: string;
-      companyUrl: string;
-      positionTitle: string;
-      startDate: string;
-      endDate: string;
-      description: {
-        paragraphs: string[];
-        projects: { title: string; description: string }[];
-        skills: { title: string; description: string }[];
-      };
-    }>;
+    headline: string;
+    specialism: string;
+    location: string;
+    email: string;
+    linkedin: string;
+    website?: string;
+    coreSkills: string[];
+    positions: Experience[];
     educations: {
       name: string;
       title: string;
@@ -35,20 +47,23 @@ type Props = {
   };
 };
 
+const { frontmatter } = Astro.props;
 const {
   title,
   pdfLink,
   noIndex,
   description,
+  headline,
+  specialism,
+  location,
+  email,
+  linkedin,
+  website,
+  coreSkills,
   positions,
   educations,
   languages,
-} = Astro.props.frontmatter;
-
-const initials = title
-  .split(' ')
-  .map((word) => word[0].toUpperCase())
-  .slice(0, 2);
+} = frontmatter;
 ---
 
 <!doctype html>
@@ -56,78 +71,69 @@ const initials = title
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description || title} />
     {noIndex && <meta name="robots" content="noindex" />}
-    <title>{title}</title>
-    <script
-      src="https://kit.fontawesome.com/ac941d3580.js"
-      crossorigin="anonymous"></script>
+    <title>{title} | CV</title>
   </head>
-  <body class="my-0 bg-indigo-50 dark:bg-slate-900">
-    <div class="container mx-auto flex justify-center">
-      <article class="minimalist relative">
-        <section class="profile">
-          <article class="vcard">
-            <div class="user-thumb">
-              <div class="css-crop" role="figure"></div>
-              <div class="overlay"></div>
+  <body>
+    <main class="resume-shell">
+      <article class="resume" aria-labelledby="profile-name">
+        <header class="profile">
+          <div class="profile-masthead">
+            <div class="profile-topline">
+              <span class="eyebrow">Trading &amp; payments platforms</span>
+              <span>{location}</span>
             </div>
-            <div class="user-details">
-              <div class="user-title">
-                <h1 class="full-name" data-bind="full_name">
-                  <span>
-                    <span>Serkan Gunes</span>
-                  </span>
-                </h1><h2 class="title text-sky-500" data-bind="headline">
-                  <span>
-                    <span> Technology leader, Software architect</span>
-                  </span>
-                </h2>
+
+            <div class="profile-header">
+              <div class="profile-identity">
+                <h1 id="profile-name">{title}</h1>
+                <p class="profile-kicker">{headline}</p>
+                <p class="profile-specialism">{specialism}</p>
               </div>
-              <ul class="user-contact">
-                <li class="locality" data-bind="location">
-                  <i class="fa-solid fa-location-dot icon"></i>
-                  <span class="text">Milton Keynes, England, UK</span>
-                </li>
-                <li class="email" data-bind="email">
-                  <i class="fa-regular fa-envelope icon"></i>
-                  <a href="mailto:gunesserkan@gmail.com" class="text">
-                    gunesserkan@gmail.com
-                  </a>
-                </li>
-              </ul>
-              <ul class="user-websites" data-bind="websites">
-                <li class="website linkedin">
-                  <i class="fa-brands fa-linkedin-in icon"></i>
-                  <a
-                    class="text"
-                    href="https://linkedin.com/in/serkangunes"
-                    rel="noreferrer nofollow"
-                    target="_blank"
-                    >linkedin.com/in/serkangunes
-                  </a>
-                </li>
-                <li class="sc-g6thkz-4 jGelDG website globe">
-                  <i class="fa-solid fa-globe icon"></i>
-                  <a
-                    class="text"
-                    href="https://www.techdesigner.co.uk/"
-                    rel="noreferrer nofollow"
-                    target="_blank"
-                    >techdesigner.co.uk
-                  </a>
-                </li>
-              </ul>
+
+              <div class="profile-photo">
+                <img src="/ProfilePicture.png" alt="Portrait of Serkan Gunes" width="120" height="120" />
+              </div>
             </div>
-          </article>
-        </section>
-        <slot />
-        <WorkExperience positions={positions} />
-        <Educations educations={educations} />
+
+            <div class="profile-contact">
+              <ul class="contact-list" aria-label="Contact details">
+                <li><a href={`mailto:${email}`}>{email}</a></li>
+                <li><a href={linkedin} target="_blank" rel="noreferrer">LinkedIn</a></li>
+                {website && <li><a href={website} target="_blank" rel="noreferrer">Website</a></li>}
+              </ul>
+              {pdfLink && (
+                <a class="download-link" href={`/${pdfLink}`} download>
+                  Download CV
+                </a>
+              )}
+            </div>
+          </div>
+
+          <section class="summary" aria-labelledby="summary-heading">
+            <p class="section-label" id="summary-heading">Profile</p>
+            <div class="summary-copy"><slot /></div>
+          </section>
+        </header>
+
+        <div class="resume-content">
+          <section class="section core-skills" aria-labelledby="skills-heading">
+            <div class="section-heading">
+              <h2 id="skills-heading">Core skills</h2>
+              <span class="section-rule" aria-hidden="true"></span>
+            </div>
+            <ul class="skill-list">
+              {coreSkills.map((skill) => <li>{skill}</li>)}
+            </ul>
+          </section>
+
+          <WorkExperience positions={positions} />
+          <Educations educations={educations} languages={languages} />
+        </div>
       </article>
-    </div>
-    <style></style>
+    </main>
   </body>
 </html>

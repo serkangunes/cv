@@ -1,5 +1,6 @@
 ---
 import Education from './Education.astro';
+import Language from './Language.astro';
 
 type Props = {
   educations: {
@@ -8,11 +9,31 @@ type Props = {
     startDate: string;
     endDate: string;
   }[];
+  languages: {
+    name: string;
+    level: string;
+  }[];
 };
 
-const { educations } = Astro.props;
+const { educations, languages } = Astro.props;
 ---
 
-<h2>Education</h2>
+<section class="section details-section" aria-label="Education and languages">
+  <div class="details-column">
+    <div class="section-heading">
+      <h2>Education</h2>
+      <span class="section-rule" aria-hidden="true"></span>
+    </div>
+    {educations.map((education) => <Education {...education} />)}
+  </div>
 
-{educations.map((education) => <Education {...education} />)}
+  <div class="details-column">
+    <div class="section-heading">
+      <h2>Languages</h2>
+      <span class="section-rule" aria-hidden="true"></span>
+    </div>
+    <ul class="language-list">
+      {languages.map((language) => <Language {...language} />)}
+    </ul>
+  </div>
+</section>

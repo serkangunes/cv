@@ -9,4 +9,8 @@ type Props = {
 const { name, title, startDate, endDate } = Astro.props;
 ---
 
-<p>{name} - {title} | {startDate} - {endDate}</p>
+<article class="detail-item">
+  <h3>{title}</h3>
+  <p>{name}</p>
+  <p class="detail-meta">{startDate} - {endDate}</p>
+</article>
