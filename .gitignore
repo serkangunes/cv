@@ -21,3 +21,9 @@ pnpm-debug.log*
 public/resume.pdf
 .astro
 tmp/
+output/
+outputs/
+.idea/
+.vscode/
+out/
+.astro

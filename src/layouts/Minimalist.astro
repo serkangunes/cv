@@ -10,7 +10,9 @@ import '../styles.css';
 type Experience = {
   companyName: string;
   companyUrl: string;
+  companyContext?: string;
   positionTitle: string;
+  previousTitle?: string;
   startDate: string;
   endDate: string;
   description: {
@@ -29,11 +31,19 @@ type Props = {
     headline: string;
     specialism: string;
     location: string;
+    workAuthorisation?: string;
     email: string;
     linkedin: string;
     website?: string;
     coreSkills: string[];
     positions: Experience[];
+    earlierExperience: {
+      companyName: string;
+      dates: string;
+      title: string;
+      summary: string;
+    }[];
+    projects: { name: string; url?: string; summary: string }[];
     educations: {
       name: string;
       title: string;
@@ -56,11 +66,14 @@ const {
   headline,
   specialism,
   location,
+  workAuthorisation,
   email,
   linkedin,
   website,
   coreSkills,
   positions,
+  earlierExperience,
+  projects,
   educations,
   languages,
 } = frontmatter;
@@ -83,7 +96,7 @@ const {
         <header class="profile">
           <div class="profile-masthead">
             <div class="profile-topline">
-              <span class="eyebrow">Trading &amp; payments platforms</span>
+              <span class="eyebrow">Trading, payments &amp; developer platforms</span>
               <span>{location}</span>
             </div>
 
@@ -104,6 +117,7 @@ const {
                 <li><a href={`mailto:${email}`}>{email}</a></li>
                 <li><a href={linkedin} target="_blank" rel="noreferrer">LinkedIn</a></li>
                 {website && <li><a href={website} target="_blank" rel="noreferrer">Website</a></li>}
+                {workAuthorisation && <li>{workAuthorisation}</li>}
               </ul>
               {pdfLink && (
                 <a class="download-link" href={`/${pdfLink}`} download>
@@ -131,6 +145,31 @@ const {
           </section>
 
           <WorkExperience positions={positions} />
+
+          <section class="section earlier-experience" aria-labelledby="earlier-heading">
+            <div class="section-heading">
+              <h2 id="earlier-heading">Earlier experience</h2>
+              <span class="section-rule" aria-hidden="true"></span>
+            </div>
+            {earlierExperience.map((role) => (
+              <article class="compact-entry">
+                <h3>{role.companyName} <span>{role.dates}</span></h3>
+                <p><span class="compact-title">{role.title}.</span> {role.summary}</p>
+              </article>
+            ))}
+          </section>
+
+          <section class="section independent-projects" aria-labelledby="projects-heading">
+            <div class="section-heading">
+              <h2 id="projects-heading">Selected independent projects</h2>
+              <span class="section-rule" aria-hidden="true"></span>
+            </div>
+            <ul class="project-list">
+              {projects.map((project) => (
+                <li><strong>{project.name}.</strong> {project.url && <><a href={project.url}>{new URL(project.url).hostname}</a>. </>}{project.summary}</li>
+              ))}
+            </ul>
+          </section>
           <Educations educations={educations} languages={languages} />
         </div>
       </article>

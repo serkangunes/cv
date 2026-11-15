@@ -2,7 +2,9 @@
 type Props = {
   companyName: string;
   companyUrl: string;
+  companyContext?: string;
   positionTitle: string;
+  previousTitle?: string;
   startDate: string;
   endDate: string;
   description: {
@@ -15,7 +17,9 @@ type Props = {
 const {
   companyName,
   companyUrl,
+  companyContext,
   positionTitle,
+  previousTitle,
   startDate,
   endDate,
   description,
@@ -23,15 +27,16 @@ const {
 ---
 
 <article class="experience-entry">
-  <div class="experience-meta">
-    <p class="experience-dates">{startDate} - {endDate}</p>
-  </div>
-
   <div class="experience-content">
-    <h3>{positionTitle}</h3>
+    <div class="experience-heading">
+      <h3>{positionTitle}</h3>
+      <p class="experience-dates">{startDate} - {endDate}</p>
+    </div>
+    {previousTitle && <p class="previous-title">{previousTitle}</p>}
     <p class="experience-company-link">
       <a href={companyUrl} target="_blank" rel="noreferrer">{companyName}</a>
     </p>
+    {companyContext && <p class="company-context">{companyContext}</p>}
     <p class="experience-summary">{description.summary}</p>
 
     {description.highlights.length > 0 && (

@@ -17,6 +17,7 @@ import { chromium } from 'playwright';
       bottom: '0px',
     },
     printBackground: true,
+    tagged: true,
   });
 
   await browser.close();
