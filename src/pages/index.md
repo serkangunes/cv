@@ -32,7 +32,7 @@ positions:
       highlights:
         - Designed CMC Markets' first micro-frontend architecture using Module Federation as part of Kipling, its AWS lighthouse project.
         - Designed latency-aware cloud patterns for CMC's transition from on-premises-only infrastructure to AWS.
-        - Led the design and implementation of ConnectAPI, a REST API exposing approximately 90% of CMC Markets' trading functionality to client applications.
+        - Led the design and implementation of ConnectAPI, a REST API that gives client applications access to core trading workflows at CMC Markets.
         - Migrated the Orders service from serverless to Node.js containers, reducing typical production response times from 500-600 ms to below 80 ms. Proposed and helped design a similar Product service migration, cutting response times from seconds to hundreds of milliseconds.
         - Integrated a Kafka producer for account value updates, reducing update latency from seconds to 150 ms.
         - Helped create CAML, an AWS framework adopted by four to five teams. One configuration entry generates projects, CI/CD pipelines, linked resources, API conventions and alerts.
